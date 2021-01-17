@@ -1,10 +1,6 @@
 
 #include "cos.h"
 
-
-
-
-
 Dane* interpret_response(const char* const chunk,Dane *dane)
 {
     const cJSON *payload = NULL;
@@ -17,7 +13,8 @@ Dane* interpret_response(const char* const chunk,Dane *dane)
             fprintf(stderr, "Error before: %s\n", error_ptr);
         }
     }
-    else {
+    else 
+    {
         payload = cJSON_GetObjectItemCaseSensitive(game_json, "payload");
         cJSON *current_x = cJSON_GetObjectItemCaseSensitive(payload, "current_x");
         cJSON *list =  cJSON_GetObjectItemCaseSensitive(payload, "list");
@@ -37,14 +34,18 @@ Dane* interpret_response(const char* const chunk,Dane *dane)
                 }
         }           
  
-        else if (current_x != NULL) {
+        else if (current_x != NULL) 
+        {
             cJSON *current_y = cJSON_GetObjectItemCaseSensitive(payload, "current_y");
             cJSON *field_type =  cJSON_GetObjectItemCaseSensitive(payload, "field_type");
             cJSON *direction =  cJSON_GetObjectItemCaseSensitive(payload, "direction");
             dane->x[0]=current_x->valueint;
             dane->y[0]=current_y->valueint;
             dane->field[0] =field_type->valuestring;
-            dane->kierunek_lufy = 
+            dane->kierunek_lufy = direction->valuestring
+            dane->website_x = current_x->valueint;
+            dane->website_y = current_y->valueint
+           
         }
  
     }

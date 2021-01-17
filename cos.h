@@ -11,9 +11,9 @@ typedef struct dane{
     int x[3];
     int y[3];
     char* field[3]; 
-    char kierunek_lufy[1];
-    int my_x;
-    int my_y;
+    char kierunek_lufy;
+    int website_x;
+    int website_y;
 
 }Dane;
 typedef struct Maciora {
@@ -21,6 +21,8 @@ typedef struct Maciora {
     int c;
     int **tab;
     int zwrot_lufy;
+    int my_x;
+    int my_y;
 
 }maciora;
 typedef struct _Memory
