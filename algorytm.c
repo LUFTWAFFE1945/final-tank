@@ -5,7 +5,7 @@
 
 
 
-algorytm_ruchu(maciora*m,Dane*D,char*tok)
+algorytm_ruchu(maciora*m,Dane*D,char*tok){
 //if sprawdam czy jests obramowanie i wypełnione w srodku
 //jeśli tak to konin
 /*jeśli nie kolejny if
@@ -46,9 +46,9 @@ algorytm_ruchu(maciora*m,Dane*D,char*tok)
 // żęby to działało
 ////////////////////////////////////////////////////
 info(tok,m)
-sprawdż czy peła
-jeśli tal -- go to full
-jeśli nie -- go to empty
+//sprawdż czy peła
+//jeśli tal -- go to full
+//jeśli nie -- go to empty
   
 
 full:
@@ -81,7 +81,7 @@ if (m->zwrot_lufy == N)
 }
 if (m->zwrot_lufy == S)
 {
-    if(m->[m->my_x-1][m->my_y]="w")
+    if(m->tab[m->my_x-1][m->my_y]="w")
     go to obrysowywanie
     else
     {
