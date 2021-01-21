@@ -5,7 +5,7 @@
 
 
 
-algorytm_ruchu(maciora*m,Dane*D,char*tok){
+algorytm_ruchu2(maciora*m,Dane*D,char*tok){
 //if sprawdam czy jests obramowanie i wypełnione w srodku
 //jeśli tak to konin
 /*jeśli nie kolejny if
@@ -50,7 +50,7 @@ info(tok,m)
 //jeśli tal -- go to full
 //jeśli nie -- go to empty
   
-
+/*
 full:
 printf("udało się odkryć")
 //zapisuje do pliku
@@ -187,3 +187,5 @@ if (m->zwrot_lufy == E)
         go to prosto_przy_obramowaniu
     }
 }
+*/
+;

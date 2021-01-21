@@ -14,15 +14,18 @@ typedef struct dane{
     char kierunek_lufy;
     int website_x;
     int website_y;
+    int ile_min_y;
+    int ile_min_x;
+
 
 }Dane;
 typedef struct Maciora {
     int r;
     int c;
-    int **tab;
-    int zwrot_lufy;
-    int my_x;
-    int my_y;
+    int **tab; // ŚCIANA- 1  TRAWA-2  PIACH-3[r][c]
+    int zwrot_lufy; // S-1,W-2,N-3,E-4
+    int my_r;
+    int my_c;
 
 }maciora;
 typedef struct _Memory
@@ -31,3 +34,7 @@ typedef struct _Memory
     size_t size;
 } Memory;
 // dodać to takie fajne zabezpieczenie
+char* info(char *token, maciora*p);
+char* explore(char *token, maciora*p);
+char* move(char *token);
+char* rotate(char *token, char *direction);
