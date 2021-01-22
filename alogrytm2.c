@@ -1,89 +1,242 @@
 #include "cos.h"
 //nie używać go to!!!!!!!!!!!!!!!!!
 
-int sprawdz_wypełnione()
+int sprawdz_wypełnione(maciora*m)
 {
-
+    /* zwracam 0 jak nie ma
+       zwracam 1 jak  ma
+    */
+    int j,i;
+    i = 0;
+    j = 0;
+    while ( m->tab[i][j] != 0)
+    {
+        while ( m->tab[i][j] != 0)
+        {
+            if(m->tab[i][j]==0)
+            return 0;
+        j++;
+        }
+    i++;
+    }
+    return 1;
 }
 
-int sprawdz_bariere()
+int check_border(maciora*m)
 {
+    /* zwracam 0 jak nie ma
+       zwracam 1 jak  ma
+    */
+    for( int i=0; i<m->my_c; i++)
+    {
+        if(m->tab[0][i]==0)
+            return 0;
+        if(m->tab[m->my_r][i]==0)
+            return 0;
+    }
+    for( int i=0; i<m->my_r; i++)
+    {
+        if(m->tab[i][0]==0)
+            return 0;
+        if(m->tab[i][m->my_c]==0)
+            return 0;
+    }
+}
+int can_I_go(maciora*m)
+{
+    if(m->zwrot_lufy=="1")
+    {
+        if(m->tab[m->my_r-1][m->my_c-1]==1)
+            return 0;
+        else
+            return 1;   
+    }
+    if(m->zwrot_lufy=="2")
+    {
+        if(m->tab[m->my_r][m->my_c-1]==1)
+            return 0;
+        else
+            return 1;   
+    }
+    if(m->zwrot_lufy=="3")
+    {
+        if(m->tab[m->my_r+1][m->my_c]==1)
+            return 0;
+        else
+            return 1;   
+    }
+    if(m->zwrot_lufy=="4")
+    {
+        if(m->tab[m->my_r][m->my_c+1]==1)
+            return 0;
+        else
+            return 1;   
+    }
 
 }
-int can_I_go()
+int check_front(maciora*m,Dane*D)//dokończ
 {
-
-}
-int check_front(maciora*m,Dane*D,char*tok)
-{
-    explore(tok,m);
    if(m->zwrot_lufy=="1")
    {
        if(m->tab[m->my_r-1][m->my_c-1]!=1)
        {
             if(m->tab[m->my_r-1][m->my_c+1]==1) 
-            {
                 return 1;
-            } 
             else
-            {
-                return 2;
-            }             
+                return 2;           
        }
        else
        {
            if(m->tab[m->my_r][m->my_c-1]==1)
-           {
                return 4;
-           }
            else
-           {
-               return 3;
-           }
-           
+               return 3;   
        }
-       
-
-      
+   }
+   if(m->zwrot_lufy=="2")
+   {
+       if(m->tab[m->my_r][m->my_c-1]!=1)
+       {
+            if(m->tab[m->my_r-1][m->my_c-1]==1) 
+                return 1;
+            else
+                return 2;           
+       }
+       else
+       {
+           if(m->tab[m->my_r+1][m->my_c]==1)
+               return 4;
+           else
+               return 3;   
+       }
+   }
+   if(m->zwrot_lufy=="3")
+   {
+        if(m->tab[m->my_r+1][m->my_c]!=1)
+       {
+            if(m->tab[m->my_r+1][m->my_c-1]==1) 
+                return 1;
+            else
+                return 2;           
+       }
+       else
+       {
+           if(m->tab[m->my_r][m->my_c+1]==1)
+               return 4;
+           else
+               return 3;   
+       }
+   }
+   if(m->zwrot_lufy=="4")
+   {
+       if(m->tab[m->my_r][m->my_c+1]!=1)
+       {
+            if(m->tab[m->my_r+1][m->my_c+1]==1) 
+                return 1;
+            else
+                return 2;           
+       }
+       else
+       {
+           if(m->tab[m->my_r-1][m->my_c]==1)
+               return 4;
+           else
+               return 3;   
+       }
    }
 }
-int make_fram (maciora*m,Dane*D,char*tok)
-{
     /*
+    make_fram i check_front
     przedemną nic i lp ściana -> 1
     przedemną nic i lp pusto -> 2
-    przedemną ściana i lp ściana pp pusto ->3
-    przedemną ściana i lp ściana pp ścian ->4
-
-
+    przedemną ściana i lp ściana p pusto ->3
+    przedemną ściana i lp ściana p ścian ->4
     */
+int go_aroud (maciora*m,Dane*D,char*tok)
+{
 
+    if (check_front(m,D)==1)
+    {
+        move(tok);
+    }
+    if (check_front(m,D)==2)
+    {
+        move(tok);
+        rotate(tok,"left");
+    }
+    if (check_front(m,D)==3)
+    {
+        rotate(tok,"right");
+        move(tok);
+    }
+    if (check_front(m,D)==4)
+    {
+        rotate(tok,"right");
+        rotate(tok,"right");
+    }
 
 
 }
-
-algorytm_ruchu2(maciora*m,Dane*D,char*tok){
-    if(sprawdz_wypełnione==1)//nie używać go to 
+int have_you_been_here(maciora*m)
+{
+    if(m->zwrot_lufy=="1")
     {
-        printf ("gotowe");
-        zapisz(m);///chyba nie ma jeszcze tej funkcji
+        if(m->tab[m->my_r-1][m->my_c-1]==0)
+            return 0;
+        else
+            return 1;   
     }
-    else
+    if(m->zwrot_lufy=="2")
     {
+        if(m->tab[m->my_r][m->my_c-1]==0)
+            return 0;
+        else
+            return 1;   
+    }
+    if(m->zwrot_lufy=="3")
+    {
+        if(m->tab[m->my_r+1][m->my_c]==0)
+            return 0;
+        else
+            return 1;   
+    }
+    if(m->zwrot_lufy=="4")
+    {
+        if(m->tab[m->my_r][m->my_c+1]==0)
+            return 0;
+        else
+            return 1;   
+    }
+
+}
+make_fram(maciora*m,Dane*D,char*tok)
+{
+    info(tok,m);
+    expolre(tok,m);
+    while(have_you_been_here(m)!=1)
+    {
+       go_aroud (m,D,tok);
+    }
+     rotate(tok,"right");
+}
+
+algorytm_ruchu2(maciora*m,Dane*D,char*tok)
+{
+    while (check_border!=1)  //zwraca 1 jęśli mamy graniec świata
+    { 
+        info(tok,m);
+        expolre(tok,m);
         while (sprawdz_wypełnione==0) //jęli nie wypełnione
         { 
-            info(tok,m);
-            expolre(tok,m);
-            if (can_I_go()==1)
+            if (can_I_go(m)==1)
             {
                 move(tok);               
             } else {
                 make_fram(m,D,tok);
-                break;
             }
         }
-        printf ("gotowe");
-        zapisz(m);
 
     }
+    printf ("gotowe");
+}
     
