@@ -42,9 +42,9 @@ Dane* interpret_response(const char* const chunk,Dane *dane)
             dane->x[0]=current_x->valueint;
             dane->y[0]=current_y->valueint;
             dane->field[0] =field_type->valuestring;
-            dane->kierunek_lufy = direction->valuestring
+            dane->kierunek_lufy = direction->valuestring;
             dane->website_x = current_x->valueint;
-            dane->website_y = current_y->valueint
+            dane->website_y = current_y->valueint;
            
         }
  

@@ -9,15 +9,13 @@ int sprawdz_wypełnione(maciora*m)
     int j,i;
     i = 0;
     j = 0;
-    while ( m->tab[i][j] != 0)
+    for (i; i<m->r; i++)
     {
-        while ( m->tab[i][j] != 0)
+        for (j; j<m->c; j++)
         {
-            if(m->tab[i][j]==0)
+            if (m->tab[i][j]==0)
             return 0;
-        j++;
         }
-    i++;
     }
     return 1;
 }
@@ -29,24 +27,31 @@ int check_border(maciora*m)
     */
     for( int i=0; i<m->my_c; i++)
     {
-        if(m->tab[0][i]==0)
+        if(m->tab[0][i]!=1)
             return 0;
-        if(m->tab[m->my_r][i]==0)
+        if(m->tab[m->r][i]!=1)
             return 0;
     }
-    for( int i=0; i<m->my_r; i++)
+    for( int i=0; i<m->r; i++)
     {
-        if(m->tab[i][0]==0)
+        if(m->tab[i][0]!=1)
             return 0;
-        if(m->tab[i][m->my_c]==0)
+        if(m->tab[i][m->c]!=1)
             return 0;
     }
+    return 1;
 }
+/*
+s-1
+w-2
+n-3
+e-4
+*/
 int can_I_go(maciora*m)
 {
     if(m->zwrot_lufy=="1")
     {
-        if(m->tab[m->my_r-1][m->my_c-1]==1)
+        if(m->tab[m->my_r-1][m->my_c]==1)
             return 0;
         else
             return 1;   
@@ -74,7 +79,7 @@ int can_I_go(maciora*m)
     }
 
 }
-int check_front(maciora*m,Dane*D)//dokończ
+int check_front(maciora*m,Dane*D)
 {
    if(m->zwrot_lufy=="1")
    {
@@ -181,28 +186,28 @@ int have_you_been_here(maciora*m)
 {
     if(m->zwrot_lufy=="1")
     {
-        if(m->tab[m->my_r-1][m->my_c-1]==0)
+        if(m->tab2[m->my_r-1][m->my_c-1]==0)
             return 0;
         else
             return 1;   
     }
     if(m->zwrot_lufy=="2")
     {
-        if(m->tab[m->my_r][m->my_c-1]==0)
+        if(m->tab2[m->my_r][m->my_c-1]==0)
             return 0;
         else
             return 1;   
     }
     if(m->zwrot_lufy=="3")
     {
-        if(m->tab[m->my_r+1][m->my_c]==0)
+        if(m->tab2[m->my_r+1][m->my_c]==0)
             return 0;
         else
             return 1;   
     }
     if(m->zwrot_lufy=="4")
     {
-        if(m->tab[m->my_r][m->my_c+1]==0)
+        if(m->tab2[m->my_r][m->my_c+1]==0)
             return 0;
         else
             return 1;   
@@ -211,11 +216,13 @@ int have_you_been_here(maciora*m)
 }
 make_fram(maciora*m,Dane*D,char*tok)
 {
+    rotate(tok,"right");
     info(tok,m);
-    expolre(tok,m);
+    
     while(have_you_been_here(m)!=1)
     {
-       go_aroud (m,D,tok);
+        expolre(tok,m);
+        go_aroud (m,D,tok);
     }
      rotate(tok,"right");
 }
@@ -230,7 +237,13 @@ algorytm_ruchu2(maciora*m,Dane*D,char*tok)
         { 
             if (can_I_go(m)==1)
             {
-                move(tok);               
+                if(have_you_been_here == 0)
+                move(tok);
+                else
+                {
+                    rotate(tok,"right");
+                }
+                             
             } else {
                 make_fram(m,D,tok);
             }
@@ -239,4 +252,4 @@ algorytm_ruchu2(maciora*m,Dane*D,char*tok)
     }
     printf ("gotowe");
 }
-    
+  
