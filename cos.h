@@ -60,8 +60,8 @@ typedef struct _Memory
 } Memory;
 
 // dodać to takie fajne zabezpieczenie
-char* info(char *token, maciora*p);
-char* explore(char *token, maciora*p);
+char* info(char *token, maciora*p,Dane*z);
+char* explore(char *token, maciora*p,Dane*z);
 char* move(char *token);
 char* rotate(char *token, char *direction);
 

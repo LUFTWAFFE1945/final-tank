@@ -3,25 +3,23 @@
 
 
 
-char* info(char *token, maciora*p) {
+char* info(char *token, maciora*p,Dane*z) {
  
     char*chunk= (char*)malloc(sizeof(char)*1024);
     char *url = (char*)malloc(sizeof(char)*1024);
     strcpy(url,"http://edi.iem.pw.edu.pl:30000/worlds/api/v1/worlds/info");
     strcat(url,"/");
     strcat(url,token);
-    Dane*z;
     uzupelnienie2(interpret_response(make_request(url),z),p);
     free(url);
 }
  
-char* explore(char *token, maciora*p) {
+char* explore(char *token, maciora*p,Dane*z) {
     char*chunk= (char*)malloc(sizeof(char)*1024);
     char *url = (char*)malloc(sizeof(char)*1024);
     strcpy(url,"http://edi.iem.pw.edu.pl:30000/worlds/api/v1/worlds/explore");
     strcat(url,"/");
     strcat(url,token);
-    Dane*z;
     uzupelnienie( interpret_response(make_request(url),z),p);
     free(url);
 } 
