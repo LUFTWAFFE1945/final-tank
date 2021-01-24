@@ -11,9 +11,8 @@ char* info(char *token, maciora*p) {
     strcat(url,"/");
     strcat(url,token);
     Dane*z;
-    uzupelnienie( interpret_response(make_request(url),z),p);
+    uzupelnienie2(interpret_response(make_request(url),z),p);
     free(url);
-    return z;
 }
  
 char* explore(char *token, maciora*p) {
@@ -25,7 +24,6 @@ char* explore(char *token, maciora*p) {
     Dane*z;
     uzupelnienie( interpret_response(make_request(url),z),p);
     free(url);
-    return z;
 } 
 char* move(char *token) {
     char*chunk= (char*)malloc(sizeof(char)*1024);
@@ -35,7 +33,6 @@ char* move(char *token) {
     strcat(url,token);
     make_request(url);
     free(url);
-    return 0;
 }
  
 char* rotate(char *token, char *direction)
@@ -49,5 +46,4 @@ char* rotate(char *token, char *direction)
     strcat(url,direction);
     make_request(url);
     free(url);
-    return 0;
 }

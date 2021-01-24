@@ -5,19 +5,20 @@ int main()
 {
     char*chunk=(char*)malloc(sizeof(char*));
     char*nazwa_pliku="macierztestowa.txt";
-    struct macierz *plansza;
-    struct Dane *D;
-    printf("%d\n",plikIstnieje(nazwa_pliku));
-    if(plikIstnieje(nazwa_pliku)==1){
+    maciora*plansza;
+    Dane *D;
+    if(powiedz_czy_plik_istnieje(nazwa_pliku)==1){
         plansza = wczytaj(nazwa_pliku);
     }
     else{
-        plansza = utworz();
+        plansza = utworz_poczatek();
     }
      
     algorytm_ruchu2(plansza,D,"qwerty_20");
-    save_to_file(plansza,nazwa_pliku);
-    smash_all(plansza,D);///JESZCZE NIE NAPISANE
+    printf("zapisano:\n");
+    pokaz_macierz(plansza);
+    zapisz_do_pliku(plansza,nazwa_pliku);
+    zwolnij_macierz(plansza);
 
 }
  

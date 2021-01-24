@@ -39,6 +39,7 @@ char * make_request(char *url)
     Memory chunk;
     chunk.size = 0;
     chunk.response = NULL;
+    printf("masło1\n");
  
      curl = curl_easy_init();
     if (curl)
@@ -65,7 +66,9 @@ char * make_request(char *url)
             fprintf(stderr, "Błąd! curl_easy_perform() niepowodzenie: %s\n", curl_easy_strerror(res));
         else
         {
+            printf("masło2\n");
             printf("%s", chunk.response);
+            printf("masło3\n");
         }
         /* zawsze po sobie sprzątaj */
         // interpret_response(chunk.response);

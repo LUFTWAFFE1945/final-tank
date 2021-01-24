@@ -1,16 +1,26 @@
 #include "cos.h"
-maciora*utworz(){
+
+maciora*utworz_poczatek(){
     maciora*m =(maciora*) malloc(sizeof(maciora));
     m->r=1;
     m->c=1;
+    m->plus_r=1;
+    m->plus_c=1;
+    m->min_r=0;
+    m->min_r=0;
     m->tab = (int**) calloc(m->r, sizeof(int*));
     for (int i=0;i<m->r;i++)
     m->tab[i] = (int*) calloc(m->c, sizeof(int)); 
     m->tab[0][0]=0;
+    
+    m->tab2 = (int**) calloc(m->r, sizeof(int*));
+    for (int i=0;i<m->r;i++)
+    m->tab2[i] = (int*) calloc(m->c, sizeof(int)); 
+    m->tab2[0][0]=0;
     return m;
 }
 
-int plikIstnieje (char* nazwa){
+int powiedz_czy_plik_istnieje (char* nazwa){
     FILE* plik;
     plik = fopen(nazwa, "r");  
     if (plik)
@@ -20,11 +30,16 @@ int plikIstnieje (char* nazwa){
     }
     return 0;
 }
+
 maciora*wczytaj(char*nazwa){
     FILE* plik;
     maciora*m =(maciora*) malloc(sizeof(maciora));
     plik = fopen(nazwa, "r");  
-    fscanf(plik, "%d", &m->r);
+    fscanf(plik, "%d", &m->plus_r);
+    fscanf(plik, "%d", &m->plus_c);
+    fscanf(plik, "%d", &m->min_r); //zapisuje przesunięcie do macierzy
+    fscanf(plik, "%d", &m->min_c);
+    fscanf(plik, "%d", &m->r); //zapisuje rozmiar macierzy
     fscanf(plik, "%d", &m->c);
     m->tab = (int**) calloc(m->r, sizeof(int*));
     for (int i=0;i<m->r;i++)
@@ -41,18 +56,25 @@ maciora*wczytaj(char*nazwa){
     return m;
 }
 
-void save_to_file(maciora P,char nazwa[])
-{
-    FILE *zapis=fopen(nazwa,"w");
-    fprintf(zapis,"%d\n%d\n",P.r,P.c);
-    for(int i=0;i<P.r;i++)
-    {
-        for(int j=0;j<P.c;j++)
-        {
-            fprintf(zapis,"%f  ",P.tab[i][j]);
-        }
-        fprintf(zapis,"\n");
-    }
-    fclose(zapis);
+void zapisz_do_pliku(maciora*m,char*nazwa_pliku){
+FILE*plik=fopen(nazwa_pliku,"w");
 
+fprintf(plik,"%d\n%d\n",m->plus_r,m->plus_c);
+fprintf(plik,"%d\n%d\n",m->min_r,m->min_c); //zapisuje przesunięcie
+fprintf(plik,"%d\n%d\n",m->r,m->c); //zapisuje rozmiar macierzy
+    for(int i = m->r-1; i>=0 ; i--)
+        for(int j = 0; j<m->c ; j++)
+        {
+            fprintf(plik,"%d\t",m->tab[i][j]);
+            if(j+1 == m->c)
+            fprintf(plik,"\n");
+        }  
+fclose(plik);
+}
+
+void zwolnij_macierz(maciora*m){
+    for (int i=0;i<m->r;i++) 
+    free(m->tab[i]);
+    free(m->tab);
+    free(m); 
 }

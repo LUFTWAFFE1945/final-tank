@@ -39,6 +39,10 @@ char kierunek_lufy;
 */
 
 typedef struct Maciora {
+    int plus_r; //wiersze macierzy na plusie
+    int plus_c; //kolumny macierzy na minusie
+    int min_r; //wiersze na minusie
+    int min_c; //kolumny na minusie
     int r;
     int c;
     int **tab; // ŚCIANA- 1  TRAWA-2  PIACH-3[r][c]
@@ -48,18 +52,44 @@ typedef struct Maciora {
     int my_c;
 
 }maciora;
+
 typedef struct _Memory
 {
     char *response;
     size_t size;
 } Memory;
-typedef struct _Memory
-{
-    char *response;
-    size_t size;
-} Memory;
+
 // dodać to takie fajne zabezpieczenie
 char* info(char *token, maciora*p);
 char* explore(char *token, maciora*p);
 char* move(char *token);
 char* rotate(char *token, char *direction);
+
+void pokaz_macierz(maciora*m);
+void przesun_prawo(maciora*m);
+void przesun_gora(maciora*m);
+void dodaj_wiersz(maciora *m);
+void dodaj_kolumne(maciora *m);  
+int ewentualna_realokacja(maciora*m, int x, int y);
+void wizualizacja(maciora*m, int x, int y, char*pole,char kierunek_lufy);
+void wizualizacja2(maciora*m, int x, int y, char*pole,char kierunek_lufy);
+void uzupelnienie(Dane*odczyt,maciora*plansza);
+void uzupelnienie2(Dane*odczyt,maciora*plansza);
+maciora*utworz_poczatek();
+int powiedz_czy_plik_istnieje (char* nazwa);
+maciora*wczytaj(char*nazwa); 
+void zapisz_do_pliku(maciora*m,char*nazwa_pliku);
+void zwolnij_macierz(maciora*m);
+int sprawdz_wypelnione(maciora*m);
+int check_border(maciora*m);
+int can_I_go(maciora*m);
+int check_front(maciora*m,Dane*D);
+int go_aroud (maciora*m,Dane*D,char*tok);
+int have_you_been_here(maciora*m);
+void make_fram(maciora*m,Dane*D,char*tok);
+void algorytm_ruchu2(maciora*m,Dane*D,char*tok);
+
+Dane* interpret_response(const char* const chunk,Dane *dane);
+char * make_request(char *url);
+
+  
