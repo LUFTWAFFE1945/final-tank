@@ -8,6 +8,7 @@ char *info(char *token, maciora *p, Dane *z)
     strcat(url, "/");
     strcat(url, token);
     uzupelnienie_info(interpret_response(make_request(url), z), p);
+    printf("zbieram info\n");
     free(url);
 }
 
@@ -18,6 +19,7 @@ char *explore(char *token, maciora *p, Dane *z)
     strcat(url, "/");
     strcat(url, token);
     uzupelnienie_explore(interpret_response(make_request(url), z), p);
+    printf("exploruje\n");
     free(url);
 }
 char *move(char *token)
@@ -27,6 +29,7 @@ char *move(char *token)
     strcat(url, "/");
     strcat(url, token);
     make_request(url);
+    printf("jadę prosto\n");
     free(url);
 }
 
@@ -39,5 +42,6 @@ char *rotate(char *token, char *direction)
     strcat(url, "/");
     strcat(url, direction);
     make_request(url);
+    printf("obracam się %s\n", direction);
     free(url);
 }

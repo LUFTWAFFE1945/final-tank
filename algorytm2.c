@@ -140,7 +140,7 @@ int check_front(maciora*m,Dane*D)
             else
                 return 2;           
        }
-       else
+       else//jęśli jest ściana przed
        {
            if(m->tab[m->my_r][m->my_c+1]==1)
                return 4;
@@ -179,21 +179,29 @@ int go_aroud (maciora*m,Dane*D,char*tok)
     if (check_front(m,D)==1)
     {
         move(tok);
+        explore(tok,m,D);
     }
     if (check_front(m,D)==2)
     {
         move(tok);
         rotate(tok,"left");
+        explore(tok,m,D);
     }
     if (check_front(m,D)==3)
     {
         rotate(tok,"right");
         move(tok);
+        explore(tok,m,D);
     }
     if (check_front(m,D)==4)
     {
         rotate(tok,"right");
         rotate(tok,"right");
+        move(tok);
+        rotate(tok,"right");
+
+        
+
     }
 
 
@@ -235,14 +243,17 @@ void make_fram(maciora*m,Dane*D,char*tok)
     rotate(tok,"right");
     info(tok,m,D);
     explore(tok,m,D);
-
-    
-    while(have_you_been_here(m)!=1)
+    int x = m->my_r;
+    int y = m->my_c;
+    printf("x %d   y%d\n", x,y);
+    while(m->my_r!=x)
+   { while(m->my_c!=y)
     {
         explore(tok,m,D);
         go_aroud (m,D,tok);
     }
      rotate(tok,"right");
+   }
 }
 
 void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
@@ -261,7 +272,7 @@ void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
             if (can_I_go(m)==1)
             {
                   printf("algorytm5\n");
-                if(have_you_been_here(m) == 0){
+               // if(have_you_been_here(m) == 0){
                     printf("algorytm5.5\n");
                 move(tok);
                 explore(tok,m,D);
@@ -269,23 +280,22 @@ void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
 
                 }
                 
-                else
+               /* else
                 {
                     printf("algorytm7\n");
                     rotate(tok,"right");
                     explore(tok,m,D);
                     printf("algorytm8\n");
                 }
-                             
-            } else {
+                */             
+            else {
+                rotate(tok,"right");
                 printf("algorytm9\n");
-                
+                printf("robie ramkę\n");
                 make_fram(m,D,tok);
-                printf("algorytm10\n");
-            }
+                printf("algorytm10\n");}
         }
-
-    }
     printf ("gotowe");
+    }
 }
   

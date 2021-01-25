@@ -2,21 +2,21 @@
 
 maciora*utworz_poczatek(){
     maciora*m =(maciora*) malloc(sizeof(maciora));
-    m->r=1;
-    m->c=1;
-    m->plus_r=1;
-    m->plus_c=1;
-    m->min_r=0;
-    m->min_r=0;
+    m->r=11;
+    m->c=11;
+    m->plus_r=9;
+    m->plus_c=9;
+    m->min_r=2;
+    m->min_c=2;
     m->tab = (int**) calloc(m->r, sizeof(int*));
     for (int i=0;i<m->r;i++)
     m->tab[i] = (int*) calloc(m->c, sizeof(int)); 
-    m->tab[0][0]=0;
+   
     
     m->tab2 = (int**) calloc(m->r, sizeof(int*));
     for (int i=0;i<m->r;i++)
     m->tab2[i] = (int*) calloc(m->c, sizeof(int)); 
-    m->tab2[0][0]=0;
+    
     return m;
 }
 
