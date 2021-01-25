@@ -74,7 +74,9 @@ fclose(plik);
 
 void zwolnij_macierz(maciora*m){
     for (int i=0;i<m->r;i++) 
-    free(m->tab[i]);
+    {free(m->tab[i]);
+    free(m->tab2[i]);}
+    free(m->tab2);
     free(m->tab);
     free(m); 
 }

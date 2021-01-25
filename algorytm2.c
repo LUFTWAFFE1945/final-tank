@@ -56,18 +56,21 @@ int can_I_go(maciora*m)
         if(m->tab[m->my_r-1][m->my_c]==1)
             return 0;
         else
-            return 1;   
+            return 1;;   
     }
     if(m->zwrot_lufy==2)
     {
         if(m->tab[m->my_r][m->my_c-1]==1)
             return 0;
         else
-            return 1;   
+            return 1;  
+ 
     }
     if(m->zwrot_lufy==3)
-    {
+    {   
+         printf("%d\n",m->tab[m->my_r+1][m->my_c]);
         printf("wchodze\n");
+        printf("x i y co pzedemn %d %d %d\n",m->my_r+1,m->my_c,m->tab[m->my_r+1][m->my_c]);
         if(m->tab[m->my_r+1][m->my_c]==1){
         printf("nie moge jechać\n"); 
         return 0;
@@ -269,31 +272,20 @@ void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
         while (sprawdz_wypelnione(m)==0) //jęli nie wypełnione
         { 
                   printf("algorytm4\n");
-            if (can_I_go(m)==1)
+            while (can_I_go(m)==1)
             {
-                  printf("algorytm5\n");
+                printf("algorytm5\n");
                // if(have_you_been_here(m) == 0){
-                    printf("algorytm5.5\n");
+                printf("algorytm5.5\n");
                 move(tok);
                 explore(tok,m,D);
                 printf("algorytm6\n");
-
-                }
-                
-               /* else
-                {
-                    printf("algorytm7\n");
-                    rotate(tok,"right");
-                    explore(tok,m,D);
-                    printf("algorytm8\n");
-                }
-                */             
-            else {
-                rotate(tok,"right");
+                printf("can i go %d---------------------------------------------------------------------------------------------------------------------------------------------\n",can_I_go(m));
+            } 
                 printf("algorytm9\n");
                 printf("robie ramkę\n");
                 make_fram(m,D,tok);
-                printf("algorytm10\n");}
+                printf("algorytm10\n");
         }
     printf ("gotowe");
     }

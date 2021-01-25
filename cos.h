@@ -10,13 +10,7 @@ char moj_globalny_char;  //h
 typedef struct dane{
     int x[3]; 
     int y[3];
-    /*char field[3][3];
-    char  front_field[];
-    char  right_field[6];
-    char  left_field[6];
-    char  position_field[6];*/
     int field[3];
-    //char* field[3]; 
     char kierunek_lufy;
     int website_x;
     int website_y;
@@ -25,24 +19,7 @@ typedef struct dane{
 
 
 }Dane;
-/*
-Dane *d;
-wykonuje operacje -> otrzymuje jeden element
-d[0].x[0]
-d[0].x[1]
-d[0].x[2]
-d[0].y[0]
-d[0].y[1]
-d[0].y[2]
-d[0].field[0]
-d[0].field[1]
-d[0].field[2]
-char kierunek_lufy;
-    int website_x;
-    int website_y;
-    int ile_min_y;
-    int ile_min_x;
-*/
+
 
 typedef struct Maciora {
     int plus_r; //wiersze macierzy na plusie

@@ -6,7 +6,7 @@ int main()
     char*chunk=(char*)malloc(sizeof(char*));
     char*nazwa_pliku="macierztestowa.txt";
     maciora*plansza;
-    Dane *D=(Dane*)malloc(sizeof(Dane*));
+    Dane *D=(Dane*)malloc(sizeof(Dane));
     if(powiedz_czy_plik_istnieje(nazwa_pliku)==1){
         plansza = wczytaj(nazwa_pliku);
     }
@@ -19,6 +19,7 @@ int main()
     pokaz_macierz(plansza);
     zapisz_do_pliku(plansza,nazwa_pliku);
     zwolnij_macierz(plansza);
+    free(D);
 
 }
  
