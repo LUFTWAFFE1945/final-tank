@@ -125,13 +125,20 @@ void wizualizacja2(maciora*m, int x, int y, int pole,char kierunek_lufy){
     ewentualna_realokacja(m,x,y);  
     if(pole == 1){   // ŚCIANA- 1  TRAWA-2  PIACH-3[r][c]
     m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
+    m->tab[x+m->min_r-1][y+m->min_c-1]=1;
     }
     if(pole == 2){
     m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
+    m->tab[x+m->min_r-1][y+m->min_c-1]=2;
     }
     if(pole == 3){
     m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
+    m->tab[x+m->min_r-1][y+m->min_c-1]=3;
     }
+    
+    m->my_c=y+m->min_c-1;//teraz to zamieniałem 00:15 26.02.2021
+    m->my_r=y+m->min_r-1;
+
     
     if(kierunek_lufy == 'S') //S-1,W-2,N-3,E-4
     m->zwrot_lufy=1;
@@ -154,8 +161,8 @@ void uzupelnienie_info(Dane*odczyt,maciora*plansza){
      //printf("masło11111111111111111111111111111111111111111111111111111111111\n");
     wizualizacja2(plansza,odczyt->x[0],odczyt->y[0],odczyt->field[0],odczyt->kierunek_lufy);
     //printf("masło123465465465465465464565465464646465456\n");
-    plansza->my_c=odczyt->website_x-1;
-    plansza->my_r=odczyt->website_y-1;
+    //plansza->my_c=odczyt->website_x;
+   // plansza->my_r=odczyt->website_y;
     //printf("min_c min_r %d %d",plansza->min_r, plansza->min_c );
 
 }

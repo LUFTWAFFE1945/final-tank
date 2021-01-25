@@ -136,6 +136,7 @@ int check_front(maciora*m,Dane*D)
    }
    if(m->zwrot_lufy==3)
    {
+       printf("my r-> %d   my c->%d ", m->my_r, m->my_c);
         if(m->tab[m->my_r+1][m->my_c]!=1)
        {
             if(m->tab[m->my_r+1][m->my_c-1]==1) 

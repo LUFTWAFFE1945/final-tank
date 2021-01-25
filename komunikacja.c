@@ -66,9 +66,9 @@ char * make_request(char *url)
             fprintf(stderr, "Błąd! curl_easy_perform() niepowodzenie: %s\n", curl_easy_strerror(res));
         else
         {
-            printf("masło2\n");
+          //  printf("masło2\n");
             printf("%s", chunk.response);
-            printf("masło3\n");
+            //printf("masło3\n");
         }
         /* zawsze po sobie sprzątaj */
         // interpret_response(chunk.response);
