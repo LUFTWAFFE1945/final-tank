@@ -107,14 +107,14 @@ int ewentualna_realokacja(maciora*m, int x, int y){
 void wizualizacja(maciora*m, int x, int y, int pole,char kierunek_lufy){
     ewentualna_realokacja(m,x,y);  
 
-    if(pole == 1){//saciana
+    if(pole == 1){//sciana   // ŚCIANA- 1  TRAWA-2  PIACH-3[r][c]
     m->tab[x+m->min_r-1][y+m->min_c-1]=1;
     }
-    if(pole == 3){// piach
+    if(pole == 2){// trawa
 
     m->tab[x+m->min_r-1][y+m->min_c-1]=2;
     }
-    if(pole == 2){// trawa
+    if(pole == 3){// piach
     m->tab[x+m->min_r-1][y+m->min_c-1]=3;
     }
 
@@ -123,13 +123,13 @@ void wizualizacja(maciora*m, int x, int y, int pole,char kierunek_lufy){
 
 void wizualizacja2(maciora*m, int x, int y, int pole,char kierunek_lufy){
     ewentualna_realokacja(m,x,y);  
-    if(pole == 1){
-    m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
-    }
-    if(pole == 3){
+    if(pole == 1){   // ŚCIANA- 1  TRAWA-2  PIACH-3[r][c]
     m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
     }
     if(pole == 2){
+    m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
+    }
+    if(pole == 3){
     m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
     }
     

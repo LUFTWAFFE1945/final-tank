@@ -3,14 +3,13 @@
 
 int decode_type(char *type)
 {
-
+    printf("%s\n",type);
     if(type == "wall")
         return 1;
     if(type == "grass")
         return 2;
     if(type == "sand")
         return 3;
-    return 0;
 }
 
 Dane* interpret_response(const char* const chunk,Dane *w)
@@ -55,11 +54,12 @@ Dane* interpret_response(const char* const chunk,Dane *w)
      _x = cJSON_GetObjectItem(subitem, "x");
      _y = cJSON_GetObjectItem(subitem, "y");
      _type = cJSON_GetObjectItem(subitem, "type"); 
-     printf("x[%d]=%d, y[%d]=%d, type[%d]=%d\n",i,_x->valueint,i,_y->valueint,i,decode_type(_type->valuestring));
+     //printf("x[%d]=%d, y[%d]=%d, type[%d]=%d\n",i,_x->valueint,i,_y->valueint,i,decode_type(_type->valuestring));
      w->x[i]=_x->valueint;
      w->y[i]=_y->valueint;
      w->field[i] = decode_type(_type->valuestring);
-     
+     printf("dekoduje %s na %d \n",_type->valuestring,decode_type(_type->valuestring));
+     printf("x[%d]=%d, y[%d]=%d, type[%d]=%d\n",i,w->x[i],w->y[i],i,w->field[i]);
    //strcpy(w->field[i], _type->valuestring);
   }
 
