@@ -49,8 +49,10 @@ e-4
 */
 int can_I_go(maciora*m)
 {
+    
     if(m->zwrot_lufy==1)
     {
+        printf("blablablablalba\n");
         if(m->tab[m->my_r-1][m->my_c]==1)
             return 0;
         else
@@ -231,22 +233,36 @@ void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
 {
     while (check_border(m)!=1)  //zwraca 1 jęśli mamy graniec świata
     { 
-                    
+            printf("algorytm1\n");     
         info(tok,m,D);
+        printf("algorytm2\n");
         explore(tok,m,D);
+        printf("algorytm3\n");
         while (sprawdz_wypelnione(m)==0) //jęli nie wypełnione
         { 
+                  printf("algorytm4\n");
             if (can_I_go(m)==1)
             {
-                if(have_you_been_here(m) == 0)
+                  printf("algorytm5\n");
+                if(have_you_been_here(m) == 0){
+                    printf("algorytm5.5\n");
                 move(tok);
+                printf("algorytm6\n");
+
+                }
+                
                 else
                 {
+                    printf("algorytm7\n");
                     rotate(tok,"right");
+                    printf("algorytm8\n");
                 }
                              
             } else {
+                printf("algorytm9\n");
+                
                 make_fram(m,D,tok);
+                printf("algorytm10\n");
             }
         }
 

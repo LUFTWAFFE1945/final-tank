@@ -58,8 +58,8 @@ Dane* interpret_response(const char* const chunk,Dane *w)
      _y = cJSON_GetObjectItem(subitem, "y");
      _type = cJSON_GetObjectItem(subitem, "type"); 
      //printf("x[%d]=%d, y[%d]=%d, type[%d]=%d\n",i,_x->valueint,i,_y->valueint,i,decode_type(_type->valuestring));
-     w->x[i]=_x->valueint;
-     w->y[i]=_y->valueint;
+     w->y[i]=_x->valueint;
+     w->x[i]=_y->valueint;
      w->field[i] = decode_type(_type->valuestring);
      printf("dekoduje %d \n",decode_type(_type->valuestring));
      printf("x[%d]=%d, y[%d]=%d, type[%d]=%d\n",i,w->x[i],i,w->y[i],i,w->field[i]);
@@ -104,17 +104,17 @@ Dane* interpret_response(const char* const chunk,Dane *w)
             printf("%d\n",current_x->valueint);
             s=current_x->valueint;
             printf("%d\n", s);
-            w->x[0]=s;//current_x->valueint;
+            w->y[0]=s;//current_x->valueint;
             printf("masło23\n");
-            w->y[0]=current_y->valueint;
+            w->x[0]=current_y->valueint;
             printf("masło24\n");
             w->field[0] = decode_type(field_type->valuestring);
             printf("masło25\n");
             w->kierunek_lufy = direction->valuestring[0];
             printf("masło26\n");
-            w->website_x = current_x->valueint;
+            w->website_y = current_x->valueint;
             printf("masło27\n");
-            w->website_y = current_y->valueint;
+            w->website_x = current_y->valueint;
             printf("masło28\n");
            
         }
