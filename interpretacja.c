@@ -3,13 +3,16 @@
 
 int decode_type(char *type)
 {
-    printf("%s\n",type);
-    if(type == "wall")
-        return 1;
-    if(type == "grass")
-        return 2;
-    if(type == "sand")
-        return 3;
+    if(strcmp(type,"wall")==0){
+    return 1;
+    }
+    else if(strcmp(type,"grass")==0){
+    return 2;
+    }  
+    else if(strcmp(type,"sand")==0){
+    return 3;
+    }
+        
 }
 
 Dane* interpret_response(const char* const chunk,Dane *w)
@@ -58,8 +61,8 @@ Dane* interpret_response(const char* const chunk,Dane *w)
      w->x[i]=_x->valueint;
      w->y[i]=_y->valueint;
      w->field[i] = decode_type(_type->valuestring);
-     printf("dekoduje %s na %d \n",_type->valuestring,decode_type(_type->valuestring));
-     printf("x[%d]=%d, y[%d]=%d, type[%d]=%d\n",i,w->x[i],w->y[i],i,w->field[i]);
+     printf("dekoduje %d \n",decode_type(_type->valuestring));
+     printf("x[%d]=%d, y[%d]=%d, type[%d]=%d\n",i,w->x[i],i,w->y[i],i,w->field[i]);
    //strcpy(w->field[i], _type->valuestring);
   }
 
