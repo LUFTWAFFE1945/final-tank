@@ -7,6 +7,7 @@ char *info(char *token, maciora *p, Dane *z)
     strcpy(url, "http://edi.iem.pw.edu.pl:30000/worlds/api/v1/worlds/info");
     strcat(url, "/");
     strcat(url, token);
+    printf("wchodzę wuzupelnienie_info(interpret_response(make_request(url), z), p)");
     uzupelnienie_info(interpret_response(make_request(url), z), p);
     printf("zbieram info\n");
     free(url);

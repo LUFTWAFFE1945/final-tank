@@ -52,7 +52,7 @@ int can_I_go(maciora*m)
     
     if(m->zwrot_lufy==1)
     {
-        printf("blablablablalba\n");
+        //printf("blablablablalba\n");
         if(m->tab[m->my_r-1][m->my_c]==1)
             return 0;
         else
@@ -67,31 +67,31 @@ int can_I_go(maciora*m)
  
     }
     if(m->zwrot_lufy==3)
-    {   
-         printf("%d\n",m->tab[m->my_r+1][m->my_c]);
-        printf("wchodze\n");
-        printf("x i y co pzedemn %d %d %d\n",m->my_r+1,m->my_c,m->tab[m->my_r+1][m->my_c]);
-        if(m->tab[m->my_r+1][m->my_c]==1){
-        printf("nie moge jechać\n"); 
+    {   //printf("my r %d-- my c %d %d<--\n",m->my_r, m->my_c, m->tab[m->my_r][m->my_c]);
+       // printf("%d\n pole sprwadzane",m->tab[m->my_r+1][m->my_c]);
+        //printf("wchodze\n");
+        //printf("x i y co pzedemn %d %d %d\n",m->my_r+1,m->my_c,m->tab[m->my_r+1][m->my_c]);
+        if(m->tab[m->my_r+1][m->my_c]==1){// POWINNO BYĆ ODIĄC 1 BO RZĄD ROŚNIE DO DOŁU 
+        //printf("nie moge jechać\n"); 
         return 0;
         }
             
         else{
-        printf("mogę jechać bo nie ma przede mną ściany\n");
+        //printf("mogę jechać bo nie ma przede mną ściany\n");
         return 1;  
     }
     }
     if(m->zwrot_lufy==4)
     {
-        printf("wchodze\n");
+        //printf("wchodze\n");
         if(m->tab[m->my_r][m->my_c+1]==1){
-                    printf("nie moge jechać\n"); 
+                  //  printf("nie moge jechać\n"); 
         return 0;
         }
         
             
         else{
-        printf("mogę jechać bo nie ma przede mną ściany\n");
+        //printf("mogę jechać bo nie ma przede mną ściany\n");
         return 1;  
         }
  
@@ -263,31 +263,33 @@ void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
 {
     while (check_border(m)!=1)  //zwraca 1 jęśli mamy graniec świata
     { 
-            printf("algorytm1\n");     
+           // printf("algorytm1\n");     
         info(tok,m,D);
-        printf("algorytm2\n");
+        //printf("algorytm2\n");
         explore(tok,m,D);
         pokaz_macierz(m);
-        printf("algorytm3\n");
+       // printf("algorytm3\n");
         while (sprawdz_wypelnione(m)==0) //jęli nie wypełnione
         { 
-                  printf("algorytm4\n");
+                  //printf("algorytm4\n");
             while (can_I_go(m)==1)
             {
-                printf("algorytm5\n");
+               // printf("algorytm5\n");
                // if(have_you_been_here(m) == 0){
-                printf("algorytm5.5\n");
+               // printf("algorytm5.5\n");
                 move(tok);
                 explore(tok,m,D);
-                printf("algorytm6\n");
-                printf("can i go %d---------------------------------------------------------------------------------------------------------------------------------------------\n",can_I_go(m));
+                //printf("algorytm6\n");
+               // printf("can i go %d\n",can_I_go(m));
             } 
-                printf("algorytm9\n");
-                printf("robie ramkę\n");
+                //printf("algorytm9\n");
+               // printf("robie ramkę\n");
                 make_fram(m,D,tok);
-                printf("algorytm10\n");
-        }
+                //printf("algorytm10\n");
+    
     printf ("gotowe");
+    }
     }
 }
   
+ /// łabądź 690224936

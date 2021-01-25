@@ -151,9 +151,13 @@ void uzupelnienie_explore(Dane*odczyt,maciora*plansza){
 }
 
 void uzupelnienie_info(Dane*odczyt,maciora*plansza){
+     //printf("masło11111111111111111111111111111111111111111111111111111111111\n");
     wizualizacja2(plansza,odczyt->x[0],odczyt->y[0],odczyt->field[0],odczyt->kierunek_lufy);
-    plansza->my_r=odczyt->website_x+plansza->min_r-1;
-    plansza->my_c=odczyt->website_y+plansza->min_c-1;
+    //printf("masło123465465465465465464565465464646465456\n");
+    plansza->my_c=odczyt->website_x-1;
+    plansza->my_r=odczyt->website_y-1;
+    //printf("min_c min_r %d %d",plansza->min_r, plansza->min_c );
+
 }
 
 /*

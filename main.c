@@ -15,7 +15,7 @@ int main()
     }
      
     algorytm_ruchu2(plansza,D,"qwerty_20");
-    printf("zapisano:\n");
+   // printf("zapisano:\n");
     pokaz_macierz(plansza);
     zapisz_do_pliku(plansza,nazwa_pliku);
     zwolnij_macierz(plansza);
