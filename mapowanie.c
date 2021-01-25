@@ -104,32 +104,32 @@ int ewentualna_realokacja(maciora*m, int x, int y){
 
 }
 
-void wizualizacja(maciora*m, int x, int y, char*pole,char kierunek_lufy){
+void wizualizacja(maciora*m, int x, int y, int pole,char kierunek_lufy){
     ewentualna_realokacja(m,x,y);  
 
-    if(pole == "wall"){
+    if(pole == 1){//saciana
     m->tab[x+m->min_r-1][y+m->min_c-1]=1;
     }
-    if(pole == "sand"){
+    if(pole == 3){// piach
 
     m->tab[x+m->min_r-1][y+m->min_c-1]=2;
     }
-    if(pole == "grass"){
+    if(pole == 2){// trawa
     m->tab[x+m->min_r-1][y+m->min_c-1]=3;
     }
 
 
 }
 
-void wizualizacja2(maciora*m, int x, int y, char*pole,char kierunek_lufy){
+void wizualizacja2(maciora*m, int x, int y, int pole,char kierunek_lufy){
     ewentualna_realokacja(m,x,y);  
-    if(pole == "wall"){
+    if(pole == 1){
     m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
     }
-    if(pole == "sand"){
+    if(pole == 3){
     m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
     }
-    if(pole == "grass"){
+    if(pole == 2){
     m->tab2[x+m->min_r-1][y+m->min_c-1]=1;
     }
     

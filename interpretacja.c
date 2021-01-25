@@ -1,7 +1,19 @@
 
 #include "cos.h"
 
-Dane* interpret_response(const char* const chunk,Dane *dane)
+int decode_type(char *type)
+{
+
+    if(type == "wall")
+        return 1;
+    if(type == "grass")
+        return 2;
+    if(type == "sand")
+        return 3;
+    return 0;
+}
+
+Dane* interpret_response(const char* const chunk,Dane *w)
 {
     printf("masło4\n");
     const cJSON *payload = NULL;
@@ -29,28 +41,56 @@ Dane* interpret_response(const char* const chunk,Dane *dane)
             printf("masło10\n");
                 cJSON *object = NULL;
                 printf("masło11\n");
-                int i=0;
+                
+                cJSON* _x = NULL;
+                cJSON* _y = NULL;
+                cJSON* _type = NULL;
+
+  int i;
+
+  //cJSON *item = cJSON_GetObjectItem(list,"list");
+  for (i = 0 ; i < cJSON_GetArraySize(list) ; i++)
+  {
+     cJSON * subitem = cJSON_GetArrayItem(list, i);
+     _x = cJSON_GetObjectItem(subitem, "x");
+     _y = cJSON_GetObjectItem(subitem, "y");
+     _type = cJSON_GetObjectItem(subitem, "type"); 
+     printf("x[%d]=%d, y[%d]=%d, type[%d]=%d\n",i,_x->valueint,i,_y->valueint,i,decode_type(_type->valuestring));
+     w->x[i]=_x->valueint;
+     w->y[i]=_y->valueint;
+     w->field[i] = decode_type(_type->valuestring);
+     
+   //strcpy(w->field[i], _type->valuestring);
+  }
+
+                
+                /*int i=0;
                 cJSON_ArrayForEach(object,list)
                 printf("masło12\n");
                 {
+
                     cJSON *x = cJSON_GetObjectItemCaseSensitive(object, "x");
                     printf("masło13\n");
                     cJSON *y = cJSON_GetObjectItemCaseSensitive(object, "y");
                     printf("masło14\n");
                     cJSON *type = cJSON_GetObjectItemCaseSensitive(object, "type"); 
                     printf("masło15\n");
-                    dane->y[i]=y->valueint;
+                    printf("i=%d\n",i);
+                    printf("y=%d\n",y->valueint);
+                    w->y[i]=y->valueint;
                     printf("masło16\n");
-                    dane->field[i] =(char*)malloc(sizeof(char)*strlen((type->valuestring)+1));
+                    w->field[i] =(char*)malloc(sizeof(char)*strlen((type->valuestring)+1));
                     printf("masło17\n");
-                    strcpy(dane->field[i], type->valuestring);
+                    strcpy(w->field[i], type->valuestring);
                     printf("masło18\n");
                     i++;
-                }
+                }*/
+                printf("koniec if(list...\n");
         }           
  
         else if (current_x != NULL) 
         {
+            int s;
             printf("masło19\n");
             cJSON *current_y = cJSON_GetObjectItemCaseSensitive(payload, "current_y");
             printf("masło20\n");
@@ -59,21 +99,23 @@ Dane* interpret_response(const char* const chunk,Dane *dane)
             cJSON *direction =  cJSON_GetObjectItemCaseSensitive(payload, "direction");
             printf("masło22\n");
             printf("%d\n",current_x->valueint);
-            dane->x[0]=current_x->valueint;
+            s=current_x->valueint;
+            printf("%d\n", s);
+            w->x[0]=s;//current_x->valueint;
             printf("masło23\n");
-            dane->y[0]=current_y->valueint;
+            w->y[0]=current_y->valueint;
             printf("masło24\n");
-            dane->field[0] =field_type->valuestring;
+            w->field[0] = decode_type(field_type->valuestring);
             printf("masło25\n");
-            dane->kierunek_lufy = direction->valuestring;
+            w->kierunek_lufy = direction->valuestring[0];
             printf("masło26\n");
-            dane->website_x = current_x->valueint;
+            w->website_x = current_x->valueint;
             printf("masło27\n");
-            dane->website_y = current_y->valueint;
+            w->website_y = current_y->valueint;
             printf("masło28\n");
            
         }
  
     }
-    return dane;
+    return w;
 }

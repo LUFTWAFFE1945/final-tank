@@ -10,7 +10,13 @@ char moj_globalny_char;  //h
 typedef struct dane{
     int x[3]; 
     int y[3];
-    char* field[3]; 
+    /*char field[3][3];
+    char  front_field[];
+    char  right_field[6];
+    char  left_field[6];
+    char  position_field[6];*/
+    int field[3];
+    //char* field[3]; 
     char kierunek_lufy;
     int website_x;
     int website_y;
@@ -71,8 +77,8 @@ void przesun_gora(maciora*m);
 void dodaj_wiersz(maciora *m);
 void dodaj_kolumne(maciora *m);  
 int ewentualna_realokacja(maciora*m, int x, int y);
-void wizualizacja(maciora*m, int x, int y, char*pole,char kierunek_lufy);
-void wizualizacja2(maciora*m, int x, int y, char*pole,char kierunek_lufy);
+void wizualizacja(maciora*m, int x, int y, int pole,char kierunek_lufy);
+void wizualizacja2(maciora*m, int x, int y, int pole,char kierunek_lufy);
 void uzupelnienie(Dane*odczyt,maciora*plansza);
 void uzupelnienie2(Dane*odczyt,maciora*plansza);
 maciora*utworz_poczatek();
