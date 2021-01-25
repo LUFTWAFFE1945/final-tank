@@ -143,14 +143,17 @@ void wizualizacja2(maciora*m, int x, int y, int pole,char kierunek_lufy){
     m->zwrot_lufy=4;
 }
 
-void uzupelnienie(Dane*odczyt,maciora*plansza){
+void uzupelnienie_explore(Dane*odczyt,maciora*plansza){
     for(int i=0;i<3;i++){
     wizualizacja(plansza,odczyt->x[i],odczyt->y[i],odczyt->field[i],odczyt->kierunek_lufy);
     }
+    pokaz_macierz(plansza);
 }
 
-void uzupelnienie2(Dane*odczyt,maciora*plansza){
+void uzupelnienie_info(Dane*odczyt,maciora*plansza){
     wizualizacja2(plansza,odczyt->x[0],odczyt->y[0],odczyt->field[0],odczyt->kierunek_lufy);
+    plansza->my_r=odczyt->website_x+plansza->min_r-1;
+    plansza->my_c=odczyt->website_y+plansza->min_c-1;
 }
 
 /*

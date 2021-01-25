@@ -67,17 +67,31 @@ int can_I_go(maciora*m)
     }
     if(m->zwrot_lufy==3)
     {
-        if(m->tab[m->my_r+1][m->my_c]==1)
-            return 0;
-        else
-            return 1;   
+        printf("wchodze\n");
+        if(m->tab[m->my_r+1][m->my_c]==1){
+        printf("nie moge jechać\n"); 
+        return 0;
+        }
+            
+        else{
+        printf("mogę jechać bo nie ma przede mną ściany\n");
+        return 1;  
+    }
     }
     if(m->zwrot_lufy==4)
     {
-        if(m->tab[m->my_r][m->my_c+1]==1)
-            return 0;
-        else
-            return 1;   
+        printf("wchodze\n");
+        if(m->tab[m->my_r][m->my_c+1]==1){
+                    printf("nie moge jechać\n"); 
+        return 0;
+        }
+        
+            
+        else{
+        printf("mogę jechać bo nie ma przede mną ściany\n");
+        return 1;  
+        }
+ 
     }
 
 }
@@ -220,6 +234,8 @@ void make_fram(maciora*m,Dane*D,char*tok)
 {
     rotate(tok,"right");
     info(tok,m,D);
+    explore(tok,m,D);
+
     
     while(have_you_been_here(m)!=1)
     {
@@ -237,6 +253,7 @@ void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
         info(tok,m,D);
         printf("algorytm2\n");
         explore(tok,m,D);
+        pokaz_macierz(m);
         printf("algorytm3\n");
         while (sprawdz_wypelnione(m)==0) //jęli nie wypełnione
         { 
@@ -247,6 +264,7 @@ void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
                 if(have_you_been_here(m) == 0){
                     printf("algorytm5.5\n");
                 move(tok);
+                explore(tok,m,D);
                 printf("algorytm6\n");
 
                 }
@@ -255,6 +273,7 @@ void algorytm_ruchu2(maciora*m,Dane*D,char*tok)
                 {
                     printf("algorytm7\n");
                     rotate(tok,"right");
+                    explore(tok,m,D);
                     printf("algorytm8\n");
                 }
                              
